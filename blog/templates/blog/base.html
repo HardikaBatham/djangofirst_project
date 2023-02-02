@@ -1,0 +1,90 @@
+{% load static %}
+
+<html>
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+
+        {% if title %}
+            <title>Django Blog - {{ title }}</title>
+        {% else %}
+            <title>Django Blog</title>
+        {% endif %}
+
+    </head>
+    <body>
+
+        <header class="site-header">
+            <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+              <div class="container">
+                <a class="navbar-brand mr-4" href="{% url 'blog-home' %}">Django Blog</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggle">
+                  <div class="navbar-nav mr-auto">
+                    <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
+                    <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+                  </div>
+                  <!-- Navbar Right Side -->
+                  <div class="navbar-nav">
+                    {% if user.is_authenticated %}
+                      <a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
+                      <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                      <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                    {% else %}
+                      <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                      <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </nav>
+        </header>
+        
+        
+
+        <h3 style=" border-style:solid; border-color:rgb(209, 159, 94); border-width:0px 0px 5px 0px; padding: 8px; margin:auto; color:brown; width:1200px;">Some text.Lorem ipsum dolor sit amet. Sed officia doloribus est corporis</h3>
+        <div style="margin-top:40px;">
+            <p style="border-style:solid; border-color:rgb(209, 159, 94); border-width: 0px 0px 0px 40px; padding: 15px; margin: auto; text-align:justify; width:1200px;">Some text.Lorem ipsum dolor sit amet. Sed officia doloribus est corporis libero ea voluptatem modi et fugiat exercitationem et voluptatem dolores sit beatae repellendus. Qui voluptas sunt rem consequatur quis At repellat mollitia et accusamus eligendi est odio saepe. Est tempore fugiat qui cupiditate molestias qui eveniet velit sit obcaecati deleniti qui nobis quia ut libero reiciendis! In sint ducimus aut quisquam earum est excepturi voluptatum et voluptas rerum non veritatis harum vel quaerat rerum et Quis reiciendis. Non optio quam qui doloribus provident et tempora porro ea fugit quisquam et ipsa architecto aut illo repellendus. Nam aliquam voluptate eum voluptatem magni ea beatae officiis id quod repellendus sit facere alias eos accusamus distinctio. Et reiciendis iusto qui dolorem labore non esse dolor nam nobis consequatur sed quis odit hic autem rerum. Est dolor culpa ut dolore rerum et sunt quas ab obcaecati architecto eos itaque nihil sit quia itaque. Qui aliquam obcaecati non voluptas facere</p>
+        </div>
+
+        <main role="main" class="container">
+            <div class="row">
+              <div class="col-md-8">
+                {% if messages %}
+                  {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                      {{ message }}
+                    </div>
+                  {% endfor %}
+                {% endif %}
+                {% block content %}{% endblock %}
+              </div>
+              <div class="col-md-4">
+                <div class="content-section">
+                  <h3 style="color:white;">Our Sidebar</h3>
+                  <p style="color:white;">You can put any information here you'd like.
+                    <ul class="list-group">
+                      <li class="list-group-item list-group-item-light">Latest Posts</li>
+                      <li class="list-group-item list-group-item-light">Announcements</li>
+                      <li class="list-group-item list-group-item-light">Calendars</li>
+                      <li class="list-group-item list-group-item-light">etc</li>
+                    </ul>
+                  </p>
+                </div>
+              </div>
+            </div>
+        </main>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+    </body>
+</html>
